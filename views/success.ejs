@@ -1,0 +1,17 @@
+<head>
+    <title>Success</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" type="text/css">
+</head>
+<body>
+    <div class="ui text container">
+        <div style="padding-top:25%">
+            <div class="ui raised very padded text container segment">
+                <h1 style="text-align: center;">Congratulations <%=detail.fname%> <%=detail.lname%>!</h1>
+                <h3 style="text-align: center;">You have been successfully registered</h3>
+                <h3 style="text-align: center;">Registration ID: <%=detail._id%></h3>
+                <h3 style="text-align: center;">Date of Registration: <%=detail.created.toDateString()%></h3>
+            </div>
+        </div>
+    </div>
+</body>
