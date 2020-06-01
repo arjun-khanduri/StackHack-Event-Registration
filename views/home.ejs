@@ -1,0 +1,51 @@
+<head>
+    <title>Enter your details</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"> 
+</head>
+<body>
+    <br>
+    <div class="ui text container">
+        <h1 class="ui huge header">Registration</h1>
+        <div class="ui raised very padded text container segment">
+            <form class="ui form" action="/confirm" method="get">
+                <h4 class="ui dividing header">Personal details</h4>
+                <div class="field">
+                    <label>Name</label>
+                    <div class="two fields">
+                        <div class="field"><input type="text" name="detail[fname]" placeholder="First Name"></div>
+                        <div class="field"><input type="text" name="detail[lname]" placeholder="Last Name"></div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>E-mail</label>
+                    <div class="field"><input type="email" name="detail[email]" placeholder="E-mail"></div>
+                </div>
+                <div class="field">
+                    <label>Mobile Number</label>
+                    <div class="field"><input type="tel" name="detail[num]" placeholder="Mobile Number"></div>
+                </div>
+                <h4 class="ui dividing header">Registration details</h4>
+                <div class="field">
+                    <label>Registration type</label>
+                    <select name="detail[type]" class="ui fluid dropdown">
+                        <option value="self">Self</option>
+                        <option value="group">Group</option>
+                        <option value="corp">Corporate</option>
+                        <option value="other">Others</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>No. of Tickets</label>
+                    <input name="details[ticketn]" type="number" value="1">
+                </div>
+                <h4 class="ui dividing header">Upload ID Card</h4>
+                <label>Please upload an image of your ID Card</label>
+                <div class="field">
+                    <input type="file" id="img" name="detail[img]" accept="image/*">
+                </div>
+                <div><input class="ui button primary" type="submit"></div>
+            </form>
+        </div>
+    </div>
+</body>
