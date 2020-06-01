@@ -4,10 +4,20 @@ var bodyParser=require('body-parser');
 var fs=require('fs');
 var multer=require('multer');
 var mongoose=require('mongoose');
+var passport=require('passport');
+var LocalStrategy=require("passport-local");
+var passportLocalMongoose=require("passport-local-mongoose");
+var adminSchema= new mongoose.Schema({
+    username: String,
+    password: String
+});
+adminSchema.plugin(passportLocalMongoose);
+var User=mongoose.model('User',adminSchema);
 app.use(express.static('public'));
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 mongoose.connect("mongodb://localhost:27017/stackhack-reg",{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false});//connecting application to database
+mongoose.connect("mongodb://localhost:27017/stackhack-reg-admin",{useNewUrlParser:true,useUnifiedTopology:true});
 
 var detSchema=new mongoose.Schema({
     fname: String,
