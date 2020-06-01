@@ -4,21 +4,10 @@ var bodyParser=require('body-parser');
 var fs=require('fs');
 var multer=require('multer');
 var mongoose=require('mongoose');
-var filename=Date.now()+'.png';
-var storage=multer.diskStorage({
-    destination: function(req,file,cb){
-        var path='./public/cards/'
-        cb(null,path);
-    },
-    filename: function(req,file,cb){
-        cb(null,filename);
-    }
-});
-var upload=multer({storage: storage});
 app.use(express.static('public'));
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:true}));
-mongoose.connect("mongodb://localhost:27017/stackhack-reg",{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false});
+mongoose.connect("mongodb://localhost:27017/stackhack-reg",{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false});//connecting application to database
 
 var detSchema=new mongoose.Schema({
     fname: String,
@@ -32,6 +21,19 @@ var detSchema=new mongoose.Schema({
 });
 var det=mongoose.model('det',detSchema);
 
+/*Using Multer to store ID Card image*/
+
+var filename=Date.now()+'.png';
+var storage=multer.diskStorage({
+    destination: function(req,file,cb){
+        var path='./public/cards/'
+        cb(null,path);
+    },
+    filename: function(req,file,cb){
+        cb(null,filename);
+    }
+});
+var upload=multer({storage: storage});
 
 //det.remove({},function(err){
 //    if(err)
@@ -41,10 +43,12 @@ var det=mongoose.model('det',detSchema);
 //});
 
 
-
+/*Route definition*/
 app.get('/',function(req,res){
     res.render('home',{detail:null}); 
 });
+
+
 app.post('/',upload.single('detail[img]'),function(req,res){
     det.create(req.body.detail,function(err,newUser){
         var id=newUser._id.toString();
@@ -69,6 +73,7 @@ app.get('/confirm/:id',function(req,res){
     })
 
 });
+
 app.get('/success/:id',function(req,res){
    det.findById(req.params.id,function(err,found){
         if(err)
@@ -77,6 +82,7 @@ app.get('/success/:id',function(req,res){
             res.render('success',{detail:found});
    });
 });
+
 app.get('/edit/:id',function(req,res){
     var path=__dirname+'/public/cards/'+req.params.id+'.png';
     fs.unlink(path,function(err){
@@ -94,6 +100,7 @@ app.get('/edit/:id',function(req,res){
             console.log(err);
     });
 });
+
 app.listen(3000,function(req,res){
     console.log("Server listening on port 3000");
 });
