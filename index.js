@@ -101,6 +101,10 @@ app.get('/edit/:id',function(req,res){
     });
 });
 
+app.get('/login',function(req,res){
+    res.render('admin');
+});
+
 app.listen(3000,function(req,res){
     console.log("Server listening on port 3000");
 });
