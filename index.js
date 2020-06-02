@@ -9,6 +9,7 @@ var User=require('./models/User');
 var det=require('./models/DetailSchema');
 var username='admin';
 var password='admin';
+var listType=[['Registration Type','Count'],['Self',0],['Group',0],['Corporate',0],['Others',0]];
 
 mongoose.connect("mongodb://localhost:27017/stackhack-reg",{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false});//connecting application to database
 
@@ -54,10 +55,30 @@ app.get('/list',isLoggedIn,function(req,res){
         else
             res.render('list',{detail:detail});
     })
+    console.log(listType);
 });
+
 app.get('/logout',function(req,res){
     req.logout();
     res.redirect('/login');
+});
+
+app.get('/list/chart',isLoggedIn,function(req,res){
+    det.find({},function(err,detail){
+        if(err)
+           console.log(err);
+        else
+            res.render('Pie',{detail:detail});    
+    });
+});
+
+app.get('/list/:id',isLoggedIn,function(req,res){
+    det.findById(req.params.id,function(err,detail){
+        if(err)
+            console.log(err);
+        else
+            res.render('ViewProfile',{detail:detail});
+    });
 });
 
 app.listen(3000,function(req,res){
