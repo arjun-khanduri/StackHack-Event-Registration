@@ -7,8 +7,16 @@
     <div class="ui secondary pointing menu">
         <a class="ui menu item medium header" href="/logout">Logout</a>
     </div>
+    <%var listType=[['Self',0],['Group',0],['Corporate',0],['Others',0]];%>
+    <div id="piechart"></div>
     <div style="margin-left: 7%" class="ui link cards">
         <%detail.forEach(function(data){%>
+            <%console.log(data.type=='Self')%>
+            <%if(data.type=='Self') listType[0][1]+=1;%>
+            <%if(data.type=='Group') listType[1][1]+=1;%>
+            <%if(data.type=='Corporate') listType[2][1]+=1;%>
+            <%if(data.type=='Others') listType[3][1]+=1;%>
+            
             <div class="card">
                 <div class="image">
                     <img src="/cards/<%=data._id%>.png">
@@ -23,11 +31,17 @@
             </div>
         <%});%>
     </div>
+    <%console.log(listType)%>
     <div id="piechart"></div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
-        
+        function drawChart(){
+            var temp=google.visualization.arrayToDataTable(listType);
+            var options = {'title':'Report', 'width':550, 'height':400};
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        };
     </script>
 </body>
