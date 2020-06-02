@@ -1,0 +1,25 @@
+<head>
+    <title><%=detail.fname%> <%=detail.lname%></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"> 
+</head>
+<body style="background: linear-gradient(90deg, #2BC0E4 10%, #EAECC6 90%);">
+    <div class="ui inverted top fixed menu">
+        <div class="item ui small header">Mode Selection<i class="ellipsis vertical icon"></i></div>
+        <div class="right menu">
+            <div class="ui item medium header"><a href='/list'>Entries</a></div>
+            <div class="ui item medium header"><a href='/list/chart'>Registration Stats</a></div>
+            <div class="ui item medium header"><a  href="/logout">Logout</a></div>
+        </div>
+    </div>
+    <div style="margin-top: 5%;" class="ui raised very padded text container segment">
+        <h2 style="text-align:center;">Registration ID: <%=detail._id%></h2>
+        <div class="field"><label class="ui tiny header">First Name: </label><%=detail.fname%></div>
+        <div class="field"><label class="ui tiny header">Last Name: </label><%=detail.lname%></div>
+        <div class="field"><label class="ui tiny header">E-mail: </label><%=detail.email%></div>
+        <div class="field"><label class="ui tiny header">Mobile Number: </label><%=detail.num%></div>
+        <div class="field"><label class="ui tiny header">Registration Type: </label><%=detail.type%></div>
+        <div class="field"><label class="ui tiny header">No. of Tickets: </label><%=detail.ticketn%></div>
+        <div class="field"><label class="ui tiny header">ID Card: </label><img src="/cards/<%=detail._id%>.png" alt="ID Card" width="600" height="300"></div>
+    </div>
+</body>
