@@ -5,11 +5,13 @@ var mongoose=require('mongoose');
 var passport=require('passport');
 var LocalStrategy=require('passport-local');
 var passportLocalMongoose = require("passport-local-mongoose");
-var User=require('./models/user');
+var User=require('./models/User');
 var det=require('./models/DetailSchema');
 var username='admin';
 var password='admin';
+
 mongoose.connect("mongodb://localhost:27017/stackhack-reg",{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false});//connecting application to database
+
 app.use(express.static("public"));
 app.set("view engine","ejs");
 app.use(require("express-session")({
@@ -57,9 +59,11 @@ app.get('/logout',function(req,res){
     req.logout();
     res.redirect('/login');
 });
+
 app.listen(3000,function(req,res){
     console.log("Server listening on port 3000");
 });
+
 function isLoggedIn(req,res,next){
     if(req.isAuthenticated())
         return next();
