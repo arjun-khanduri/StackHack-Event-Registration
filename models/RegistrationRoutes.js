@@ -69,7 +69,7 @@ module.exports=function(app){
             else
                 res.render('edithome',{detail:found});
         });
-        det.remove({_id:req.params.id},function(err){
+        det.deleteOne({_id:req.params.id},function(err){
             if(err)
                 console.log(err);
         });
