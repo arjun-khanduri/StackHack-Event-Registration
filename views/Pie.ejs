@@ -1,0 +1,38 @@
+<head>
+    <title>Registration Statistics</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"> 
+</head>
+<body style="background: linear-gradient(90deg, #2BC0E4 10%, #EAECC6 90%);">
+    <div class="ui inverted top fixed menu">
+        <div class="item ui small header">Mode Selection<i class="ellipsis vertical icon"></i></div>
+        <div class="right menu">
+            <div class="ui item medium header"><a href='/list'>Entries</a></div>
+            <div class="ui item medium active header"><a href='/list/chart'>Registration Stats</a></div>
+            <div class="ui item medium header"><a  href="/logout">Logout</a></div>
+        </div>
+    </div>
+    <div id="piechart"></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        var x=[['Registration Type','Count'],['Self',0],['Group',0],['Corporate',0],['Others',0]];
+        <% var i=1; %>
+        <% var j=1; %>
+        <%detail.forEach(function(data){%>
+            <%if(data.type=='Self'){i=1;j=1;}%>
+            <%if(data.type=='Group'){i=2;j=1;}%>
+            <%if(data.type=='Corporate'){i=3;j=1;}%>
+            <%if(data.type=='Others'){i=4;j=1;}%>
+            x[<%=i%>][<%=j%>]+=1;
+        <%});%>
+        console.log(x);
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart(){
+            var temp=google.visualization.arrayToDataTable(x);
+            var options = {'title': 'Registration Statistics','width':1450, 'height':700};
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(temp, options);
+        };
+    </script>
+</body>
