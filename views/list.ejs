@@ -1,0 +1,33 @@
+<head>
+    <title>Administrator Portal</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"> 
+</head>
+<body style="background: linear-gradient(90deg, #2BC0E4 10%, #EAECC6 90%);">
+    <div class="ui secondary pointing menu">
+        <a class="ui menu item medium header" href="/logout">Logout</a>
+    </div>
+    <div style="margin-left: 7%" class="ui link cards">
+        <%detail.forEach(function(data){%>
+            <div class="card">
+                <div class="image">
+                    <img src="/cards/<%=data._id%>.png">
+                </div>
+                <div class="content">
+                    <div class="header">ID:<a target="_blank" href="/list/<%=data._id%>"><%=data._id%></a></div>
+                    <div class="description"><%=data.fname%> <%=data.lname%></div>
+                </div>
+                <div class="extra content">
+                    <span>Registered on <%=data.created.toDateString()%></span>
+                </div>
+            </div>
+        <%});%>
+    </div>
+    <div id="piechart"></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        
+    </script>
+</body>
