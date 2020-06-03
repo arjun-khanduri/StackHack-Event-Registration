@@ -9,7 +9,6 @@ var User=require('./models/User');
 var det=require('./models/DetailSchema');
 var username='admin';
 var password='admin';
-var listType=[['Registration Type','Count'],['Self',0],['Group',0],['Corporate',0],['Others',0]];
 
 mongoose.connect("mongodb://localhost:27017/stackhack-reg",{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false});//connecting application to database
 
@@ -32,11 +31,13 @@ User.findOne({username:username},function(err,user){
         console.log(err);
     if(user)
         console.log('Administrator already registered');
-    else
+    else{
         User.register(new User({username: username}),password,function(err,user){
             if(err)
                 console.log(err);
         });
+        console.log('Administrator registered');
+    }
 });
 
 app.get('/login',function(req,res){
@@ -55,7 +56,6 @@ app.get('/list',isLoggedIn,function(req,res){
         else
             res.render('list',{detail:detail});
     })
-    console.log(listType);
 });
 
 app.get('/logout',function(req,res){
