@@ -5,20 +5,18 @@
 </head>
 <body style="background: linear-gradient(90deg, #2BC0E4 10%, #EAECC6 90%);">
     <div class="ui inverted top fixed menu">
-        <div class="item ui small header">Mode Selection<i class="ellipsis vertical icon"></i></div>
+        <div class="item ui small header">Arjun Khanduri</i></div>
         <div class="right menu">
-            <a class="ui item medium header" href="/">Register for Event</a>
-            <a class="item ui medium header" href="/login">Administrator Login</a>
+            <div class="ui item medium header"><a href="/">Register for Event</a></div>
+            <div class="item ui medium header"><a href="/login">Administrator Login</a></div>
         </div>
     </div>
-    <div class="ui text container">
-        <div style="padding-top:23%">
-            <div class="ui raised very padded text container segment">
-                <h1 style="text-align: center;">Congratulations <%=detail.fname%> <%=detail.lname%>!</h1>
-                <h3 style="text-align: center;">You have been successfully registered</h3>
-                <h3 style="text-align: center;">Registration ID: <%=detail._id%></h3>
-                <h3 style="text-align: center;">Date of Registration: <%=detail.created.toDateString()%></h3>
-            </div>
+    <div style="padding-top:15%" class="ui text container">
+        <div class="ui raised very padded text container segment">
+            <h1 style="text-align: center;">Congratulations <%=detail.fname%> <%=detail.lname%>!</h1>
+            <h3 style="text-align: center;">You have been successfully registered</h3>
+            <h3 style="text-align: center;">Registration ID: <%=detail._id%></h3>
+            <h3 style="text-align: center;">Date of Registration: <%=detail.created.toDateString()%></h3>
         </div>
     </div>
 </body>
