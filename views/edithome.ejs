@@ -5,10 +5,10 @@
 </head>
 <body style="background: linear-gradient(90deg, #2BC0E4 10%, #EAECC6 90%);">
     <div class="ui inverted top fixed menu">
-        <div class="item ui small header">Mode Selection<i class="ellipsis vertical icon"></i></div>
+        <div class="item ui small header">Arjun Khanduri</div>
         <div class="right menu">
-            <a class="ui item medium header active" href="/">Register for Event</a>
-            <a class="item ui medium header" href="/login">Administrator Login</a>
+            <div class="ui item medium header active"><a href="/">Register for Event</a></div>
+            <div class="item ui medium header"><a href="/login">Administrator Login</a></div>
         </div>
     </div>
     <div style="margin-top: 5%;" class="ui text container">
@@ -34,7 +34,7 @@
                 <h4 class="ui dividing header">Registration details</h4>
                 <div class="field">
                     <label>Registration type</label>
-                    <select name="detail[type]" class="ui fluid dropdown">
+                    <select id="type" name="detail[type]" class="ui fluid dropdown">
                         <option value="Self">Self</option>
                         <option value="Group">Group</option>
                         <option value="Corporate">Corporate</option>
@@ -43,15 +43,23 @@
                 </div>
                 <div class="field">
                     <label>No. of Tickets</label>
-                    <input name="detail[ticketn]" type="number" value=<%=detail.ticketn%> >
+                    <input id="count" name="detail[ticketn]" type="number" value="<%=detail.ticketn%>">
                 </div>
-                <h4 class="ui dividing header">Upload ID Card</h4>
+                <h4 class="ui dividing header">Upload ID Card <i class="cloud upload icon"></i></h4>
                 <label>Please upload an image of your ID Card</label>
                 <div class="field">
-                    <input type="file" name="detail[img]" value="<%=detail.__id%>.png" >
+                    <input type="file" name="detail[img]" value="<%=detail._id%>.png" >
                 </div>
                 <div><input class="ui button primary" type="submit"></div>
             </form>
         </div>
     </div>
+    <script type="text/javascript">
+        var type=document.getElementById('type');
+        var count=document.getElementById('count');
+        type.addEventListener('click',function(){
+            if(type.value=='Self')
+                count.value=1;
+        });
+    </script>
 </body>
